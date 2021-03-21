@@ -5,7 +5,12 @@ interface Props {
   productsLength: number;
 }
 
-class PremiumView extends Component {
+interface PropsFromDispatch {
+  onSubmitClick: () => any;
+}
+
+type AllProps = PropsFromDispatch;
+class PremiumView extends React.Component<AllProps> {
   public render() {
     return (
       <div className="form">
@@ -37,7 +42,7 @@ class PremiumView extends Component {
             <input name="suminsured"></input>
           </tr>
         </table>
-        <button>Submit</button>
+        <button onClick={this.props.onSubmitClick}>Submit</button>
       </div>
     );
   }
