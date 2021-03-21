@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CartProduct } from "../../common/business-models/CartProduct";
-import { addCartProduct } from "../../dux/CartProduct/CartProductDispatcher";
+import { addCartProduct } from "../../Redux/CartProduct/CartProductDispatcher";
 import { CartProps } from "./CartContainer";
 import CartProductContainer from "./CartProduct/CartProductContainer";
 import "./style.scss";

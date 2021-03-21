@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Product } from "../../common/business-models/Product";
-import FilterContainer from "./Filter/FilterContainer";
+//import FilterContainer from "./Filter/FilterContainer";
 import ProductView from "./Product/Product";
 import { ShelfProp } from "./ShelfContainer";
-import ShelfHeader from "./ShelfHeader/ShelfHeader";
+//import pre from "./PremiumView/PremiumView";
 import "./style.scss";
 
 interface State {
@@ -18,9 +18,9 @@ class Shelf extends Component<ShelfProp, State> {
     return(
       <React.Fragment>
         <div className="shelf">
-        <FilterContainer/>
+      
         <div className="shelf-container">
-          <ShelfHeader productsLength={this.props.products.length}/>
+          {/* <ShelfHeader productsLength={this.props.products.length}/> */}
           {this.props.products.map((value: Product, index: number) => {
             return (
               <ProductView product={value} key={index} addToCart={this.props.addToCart}/>

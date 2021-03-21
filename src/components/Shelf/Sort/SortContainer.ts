@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { SortBy } from "../../../common/services/SortService";
-import { UpdateSortAction } from "../../../dux/Sort/SortAction";
+import { UpdateSortAction } from "../../../Redux/Sort/SortAction";
 import Sort from "./Sort";
 
 type updateSortBy = (sortBy: SortBy) => void;

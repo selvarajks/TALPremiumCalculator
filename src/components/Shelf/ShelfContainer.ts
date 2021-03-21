@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { Product } from "../../common/business-models/Product";
 import SortService, { SortBy } from "../../common/services/SortService";
-import { addCartProduct } from "../../dux/CartProduct/CartProductDispatcher";
-import { getFilteredSizes } from "../../dux/Filter/FilterSelector";
-import { getFilteredProducts, getProducts, getSortedProducts } from "../../dux/Product/ProductSelector";
-import { AppState } from "../../dux/rootReducer";
-import { getSortBy } from "../../dux/Sort/SortSelector";
+import { addCartProduct } from "../../Redux/CartProduct/CartProductDispatcher";
+import { getFilteredSizes } from "../../Redux/Filter/FilterSelector";
+import { getFilteredProducts, getProducts, getSortedProducts } from "../../Redux/Product/ProductSelector";
+import { AppState } from "../../Redux/rootReducer";
+import { getSortBy } from "../../Redux/Sort/SortSelector";
 import Shelf from "./Shelf";
 
 export type AddCartProduct = (product: Product, quantity: number) => void;

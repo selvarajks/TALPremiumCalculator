@@ -4,10 +4,11 @@ import { CartProduct } from "./common/business-models/CartProduct";
 import {Product} from "./common/business-models/Product";
 import CartContainer from "./components/Cart/CartContainer";
 import ShelfContainer from "./components/Shelf/ShelfContainer";
-import { AddCartProductAction } from "./dux/CartProduct/CartProductActions";
-import { setProducts } from "./dux/Product/ProductDispatcher";
-import rootStore from "./dux/rootStore";
+import { AddCartProductAction } from "./Redux/CartProduct/CartProductActions";
+import { setProducts } from "./Redux/Product/ProductDispatcher";
+import rootStore from "./Redux/rootStore";
 import logo from "./logo.svg";
+import PremiumView from "./components/TAL/Premium";
 class App extends Component {
   public componentDidMount() {
     const cartProduct: CartProduct = {
@@ -59,9 +60,10 @@ class App extends Component {
 
   public render() {
     return (
-      <div className="App">
-        <CartContainer/>
-        <ShelfContainer/>
+      <div className="App">       
+       <PremiumView/>  
+        {/* <CartContainer/>
+        <ShelfContainer/>      */}
       </div>
     );
   }
