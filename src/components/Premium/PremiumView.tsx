@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SortContainer from "../Shelf/Sort/SortContainer";
 import "./style.scss";
 
 interface Props {
@@ -38,6 +37,7 @@ class PremiumView extends Component {
             <input name="suminsured"></input>
           </tr>
         </table>
+        <button>Submit</button>
       </div>
     );
   }
