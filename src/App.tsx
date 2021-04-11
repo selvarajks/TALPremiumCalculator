@@ -6,6 +6,7 @@ import { setProducts } from "./Redux/Product/ProductDispatcher";
 import rootStore from "./Redux/rootStore";
 
 import PremiumView from "./components/Premium/Premium";
+import Premium from "./components/Premium/Premium";
 class App extends Component {
   public componentDidMount() {
     const product: Product = {
@@ -28,7 +29,7 @@ class App extends Component {
   public render() {
     return (
       <div className="App">
-        <PremiumView />
+        <Premium />
       </div>
     );
   }

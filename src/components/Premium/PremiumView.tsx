@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import "./style.scss";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-select";
 
-interface Props {
-  productsLength: number;
-}
 interface state {
   startDate: Date;
   age: number;
+  Name: string;
 }
 
 interface PropsFromDispatch {
@@ -16,6 +15,13 @@ interface PropsFromDispatch {
 }
 
 type AllProps = PropsFromDispatch;
+
+const Selectoptions = [
+  { value: "default", label: "Please-Select" },
+  { value: "engineer", label: "SoftwareEngineer" },
+  { value: "Analyst", label: "ITAnalyst" },
+  { value: "Trainee", label: "TraineeSoftwreEngineer" },
+];
 
 const calculate_age = (dob) => {
   const birthDate = new Date(dob);
@@ -32,18 +38,19 @@ class PremiumView extends React.Component<AllProps, state> {
     this.state = {
       startDate: new Date(),
       age: 0,
+      Name: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
+  changeHandler = (evt: React.ChangeEvent<HTMLInputElement>) =>
+    this.setState({ Name: evt.currentTarget.value });
 
   handleChange(date) {
     this.setState({
       startDate: date,
       age: calculate_age(date),
     });
-
-    //this.state.age = calculate_age(date);
   }
 
   onFormSubmit(e) {
@@ -63,7 +70,11 @@ class PremiumView extends React.Component<AllProps, state> {
             <tr>
               <td>
                 <label>Name </label>
-                <input name="fullname"></input>
+                <input
+                  name="fullname"
+                  onChange={this.changeHandler}
+                  value={this.state.Name}
+                ></input>
               </td>
             </tr>
             <tr>
@@ -83,7 +94,7 @@ class PremiumView extends React.Component<AllProps, state> {
             </tr>
             <tr>
               <label>Occupation </label>
-              <input name="occupation"></input>
+              <input name="occupation" value="Software Engineer"></input>
             </tr>
 
             <tr>
