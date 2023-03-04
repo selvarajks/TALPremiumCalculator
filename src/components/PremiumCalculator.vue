@@ -4,19 +4,38 @@
     <form>
       <div>
         <label>Name:</label>
-        <input type="text" name="name" value="" onChange="" required />
+        <input
+          class="input"
+          name="name"
+          type="text"
+          v-model="name"
+          placeholder="Enter name"
+          required
+        />
       </div>
       <div>
         <label>Age:</label>
-        <input type="number" name="age" value="" onChange="" required />
+        <input type="number" name="age" v-model="age" onChange="" required />
       </div>
       <div>
         <label>Date of Birth:</label>
-        <input type="date" name="dateOfBirth" value="" onChange="" required />
+        <input
+          type="date"
+          name="dateOfBirth"
+          v-model="dateOfBirth"
+          onChange=""
+          required
+        />
       </div>
       <div>
         <label>Occupation:</label>
-        <select name="occupation" value="" onChange="" required>
+        <select
+          name="occupation"
+          value=""
+          onChange=""
+          v-model="occupation"
+          required
+        >
           <option value="">Select Occupation</option>
           <option value="Cleaner">Cleaner</option>
           <option value="Doctor">Doctor</option>
@@ -38,7 +57,7 @@
       </div>
       <div>
         <br />
-        <button type="submit" @click="calculatePremium">
+        <button type="submit" @click="this.calculatePremium">
           Calculate Premium
         </button>
       </div>
@@ -48,39 +67,42 @@
 
 <script>
 import axios from "axios";
-
-// const state = {
-//   name: "",
-//   age: "",
-//   dateOfBirth: "",
-//   occupation: "",
-//   deathSumInsured: "",
-//   premium: "",
-// };
+import { reactive, toRefs } from "vue";
 
 export default {
   name: "PremiumCalculator",
   props: {
     msg: String,
   },
+  setup() {
+    const state = reactive({
+      name: "",
+      age: "",
+      dateOfBirth: "",
+      occupation: "",
+      deathSumInsured: "",
+    });
 
-  calculatePremium() {
-    axios
-      .post("/premiumcalculator", {
-        name: this.state.name,
-        age: parseInt(this.state.age),
-        dateOfBirth: new Date(this.state.dateOfBirth),
-        occupation: this.state.occupation,
-        deathCoverAmount: parseInt(this.state.deathSumInsured),
-      })
-      .then((response) => {
-        this.setState({
-          premium: response.data,
+    const calculatePremium = () => {
+      axios
+        .post("/premiumcalculator", {
+          name: state.name,
+          age: parseInt(state.age),
+          dateOfBirth: new Date(state.dateOfBirth),
+          occupation: state.occupation,
+          deathCoverAmount: parseInt(state.deathSumInsured),
+        })
+        .then((response) => {
+          this.setState({
+            premium: response.data,
+          });
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    };
+
+    return { ...toRefs(state), calculatePremium };
   },
 };
 </script>
