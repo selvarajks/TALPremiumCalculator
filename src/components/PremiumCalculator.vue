@@ -8,34 +8,28 @@
           class="input"
           name="name"
           type="text"
-          v-model="name"
+          v-model="Name"
           placeholder="Enter name"
           required
         />
       </div>
       <div>
         <label>Age:</label>
-        <input type="number" name="age" v-model="age" onChange="" required />
+        <input type="number" name="age" v-model="Age" onChange="" required />
       </div>
       <div>
         <label>Date of Birth:</label>
         <input
           type="date"
           name="dateOfBirth"
-          v-model="dateOfBirth"
+          v-model="DateOfBirth"
           onChange=""
           required
         />
       </div>
       <div>
         <label>Occupation:</label>
-        <select
-          name="occupation"
-          value=""
-          onChange=""
-          v-model="occupation"
-          required
-        >
+        <select name="occupation" onChange="" v-model="Occupation" required>
           <option value="">Select Occupation</option>
           <option value="Cleaner">Cleaner</option>
           <option value="Doctor">Doctor</option>
@@ -49,8 +43,8 @@
         <label>Death-Sum Insured:</label>
         <input
           type="number"
-          name="deathSumInsured"
-          value=""
+          name="SumInsured"
+          v-model="SumInsured"
           onChange=""
           required
         />
@@ -76,25 +70,26 @@ export default {
   },
   setup() {
     const state = reactive({
-      name: "",
-      age: "",
-      dateOfBirth: "",
-      occupation: "",
-      deathSumInsured: "",
+      Name: "",
+      Age: "",
+      DateOfBirth: "",
+      Occupation: "",
+      SumInsured: "",
+      Premium: "",
     });
 
     const calculatePremium = () => {
       axios
-        .post("/premiumcalculator", {
-          name: state.name,
-          age: parseInt(state.age),
-          dateOfBirth: new Date(state.dateOfBirth),
-          occupation: state.occupation,
-          deathCoverAmount: parseInt(state.deathSumInsured),
+        .post("http://localhost:49825/api/premium", {
+          Name: state.Name,
+          Age: parseInt(state.Age),
+          DateOfBirth: new Date(state.DateOfBirth),
+          Occupation: state.Occupation,
+          SumInsured: parseInt(state.SumInsured),
         })
         .then((response) => {
           this.setState({
-            premium: response.data,
+            premium: response.data.premium,
           });
         })
         .catch((error) => {
