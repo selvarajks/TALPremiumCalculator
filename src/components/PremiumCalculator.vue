@@ -79,8 +79,9 @@ export default {
     });
 
     const calculatePremium = () => {
+      console.log("calculatepremium");
       axios
-        .post("http://localhost:49825/api/premium", {
+        .post("https://localhost:8080/api/premium", {
           Name: state.Name,
           Age: parseInt(state.Age),
           DateOfBirth: new Date(state.DateOfBirth),
